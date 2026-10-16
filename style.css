@@ -30,7 +30,9 @@ nav a.current {
 
 html{
     --color-accent: oklch(0.7 0.1628 171);
+    --border-color: oklch(50% 10% 200 / 40%);
     accent-color: var(--color-accent);
+    color-scheme: light dark;
 }
 
 nav a:hover{
@@ -41,6 +43,13 @@ nav a:hover{
 
 input, textarea, button{
     font: inherit;
+}
+
+color-scheme {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 80%;
 }
 
 form {
@@ -94,7 +103,7 @@ h1 {
 
         p {
             margin-block: 0.5em;
-            color: oklch(50% 3% 200);
+            border-bottom: 1px solid var(--border-color);
         }
 
         ul {
