@@ -12,7 +12,7 @@ img {
 nav {
     display: flex;
     margin-bottom: 1em;
-    border-bottom: 1px solid oklch(80% 3% 200);
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav a {
@@ -24,7 +24,7 @@ nav a {
 }
 
 nav a.current {
-    border-bottom: 0.4em solid oklch(80% 3% 200);
+    border-bottom: 0.4em solid var(--border-color);
     padding-bottom: 0.1em;
 }
 
@@ -38,14 +38,14 @@ html{
 nav a:hover{
     border-bottom: 0.4em solid var(--color-accent);
     padding-bottom: 0.1em;
-    background-color: oklch(from var(--color-accent) 95% 5% h);
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
-input, textarea, button{
+input, textarea, button, select{
     font: inherit;
 }
 
-color-scheme {
+.color-scheme {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -103,7 +103,7 @@ h1 {
 
         p {
             margin-block: 0.5em;
-            border-bottom: 1px solid var(--border-color);
+            color: oklch(50% 3% 200);
         }
 
         ul {
@@ -129,7 +129,7 @@ h1 {
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: var(--color-accent);
-        border-bottom: 1px solid oklch(80% 3% 200);
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.25em;
     }
 

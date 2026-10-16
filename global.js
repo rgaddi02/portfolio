@@ -32,7 +32,7 @@ document.body.prepend(nav);
 for (let p of pages) {
     let url = p.url;
     let title = p.title;
-    // next step: create link and add it to nav
+   
     url = !url.startsWith('http') ? BASE_PATH + url : url;
 
     // Create link and add it to nav
@@ -44,6 +44,7 @@ for (let p of pages) {
         'current',
         a.host === location.host && a.pathname === location.pathname,
       );
+    
     if (a.host !== location.host) {
         a.target = "_blank";
     }
@@ -79,3 +80,18 @@ select.addEventListener('input', function (event) {
     localStorage.colorScheme = event.target.value;
 });
 
+let form = document.querySelector('form');
+
+form?.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  let data = new FormData(form);
+  let params = [];
+
+  for (let [name, value] of data) {
+    params.push(name + '=' + encodeURIComponent(value));
+  }
+
+  let url = form.action + '?' + params.join('&');
+  location.href = url;
+});
