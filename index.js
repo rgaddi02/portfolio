@@ -1,8 +1,23 @@
-import { fetchJSON, renderProjects } from './global.js';
-// Add fetchGithubData to this import once it exists in global.js (Step 3)
+import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
 
 const projects = (await fetchJSON('./lib/projects.json')) ?? [];
 const latestProjects = projects.slice(0, 3);
 
 const projectsContainer = document.querySelector('.projects');
 renderProjects(latestProjects, projectsContainer, 'h2');
+
+const githubData = await fetchGitHubData('rgaddi02');
+const profileStats = document.querySelector('#profile-stats');
+
+if (profileStats) {
+  profileStats.innerHTML = githubData
+    ? `
+      <dl>
+        <dt>Public Repos</dt><dd>${githubData.public_repos}</dd>
+        <dt>Public Gists</dt><dd>${githubData.public_gists}</dd>
+        <dt>Followers</dt><dd>${githubData.followers}</dd>
+        <dt>Following</dt><dd>${githubData.following}</dd>
+      </dl>
+    `
+    : '<p>Couldn’t load GitHub stats right now.</p>';
+}
