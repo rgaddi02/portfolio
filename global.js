@@ -95,3 +95,46 @@ form?.addEventListener('submit', function (event) {
   let url = form.action + '?' + params.join('&');
   location.href = url;
 });
+
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+const PLACEHOLDER_IMG = 'https://vis-society.github.io/labs/2/images/empty.svg';
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!(containerElement instanceof Element)) {
+    console.error('renderProjects: invalid containerElement', containerElement);
+    return;
+  }
+  if (!/^h[1-6]$/.test(headingLevel)) {
+    console.warn(`renderProjects: invalid headingLevel "${headingLevel}", using h2`);
+    headingLevel = 'h2';
+  }
+
+  containerElement.innerHTML = '';
+
+  if (!Array.isArray(projects) || projects.length === 0) {
+    containerElement.innerHTML = '<p>No projects to show yet.</p>';
+    return;
+  }
+
+  for (const project of projects) {
+    const article = document.createElement('article');
+    article.innerHTML = `
+      <${headingLevel}>${project.title ?? 'Untitled project'}</${headingLevel}>
+      <img src="${project.image ?? PLACEHOLDER_IMG}" alt="${project.title ?? ''}">
+      <p>${project.description ?? ''}</p>
+    `;
+    containerElement.appendChild(article);
+  }
+}
