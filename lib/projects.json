@@ -1,62 +1,74 @@
 [
     {
-      "title": "Lorem ipsum dolor sit.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, deserunt non delectus repellat voluptates saepe dolorum soluta veniam dolores voluptate temporibus dignissimos quidem voluptatum earum perspiciatis, consectetur quae omnis totam!"
+      "title": "Floor Generals: NBA Passing Network Analysis",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Built a restartable ingestion pipeline over the NBA Stats API that collected 9,461 directed passer–receiver edges across all 30 teams. Tested whether passing-network centralization predicts team standing with a permutation test on Spearman correlation, and built an interactive tool that recomputes a team's passing graph with any player removed."
     },
     {
-      "title": "Eius eum consequuntur quas?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Vero eligendi inventore eum deleniti ipsam nihil reiciendis dolor culpa, quasi perferendis ad modi distinctio fugit adipisci ratione expedita iusto! Accusamus sed odio amet voluptatibus dolor sunt cum labore ipsa!"
+      "title": "League of Legends Esports: Action and Win Prediction",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Analyzed 150,348 rows of professional match data across 10 tier-one leagues. Predicted match outcome from 15-minute game state, where a tuned Random Forest reached 76.6% test accuracy. Used game-ID splits and GroupKFold to prevent leakage, and ran a fairness analysis comparing major and regional leagues."
     },
     {
-      "title": "Repudiandae molestiae dolorum quod.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Dolorum tenetur ab laboriosam assumenda, a unde, quisquam harum dolorem expedita ratione distinctio eaque sed cumque iste saepe, exercitationem dolores ipsum sint voluptates sequi quos voluptas labore. Iure, voluptatem aut!"
+      "title": "US Interstate Wage Gaps, 2004–2024",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Co-authored a research paper building state and county wage panels from BLS QCEW data, deflated to 2024 dollars. Found P90/P10 wage dispersion essentially flat at both scales despite wide county-level churn, and validated the result across four robustness specifications."
     },
     {
-      "title": "Commodi eum error quos.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Possimus, assumenda at minus vitae ducimus magni dolor! Nisi cum expedita alias ipsum fuga sint cumque doloribus ipsa eaque debitis. Quod perspiciatis dignissimos voluptatem nobis facilis in repudiandae saepe recusandae."
+      "title": "Taylor Swift Song Recommender and Lyric Search (DSC 10)",
+      "year": "2025",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "DSC 10 midterm project analyzing the audio features and lyrics of Taylor Swift's first eleven studio albums. Built a song recommender that matches a Spotify Billions Club track to her most similar songs by audio features, a lyric search tool, and a TF-IDF keyword extractor that finds the word that best summarizes each song on Lover."
     },
     {
-      "title": "Architecto molestiae laudantium facere.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Alias nemo nesciunt facilis vero excepturi ea placeat rerum esse labore, accusamus exercitationem facere, dolores obcaecati harum tempore suscipit nulla. Corporis qui maiores nulla quidem, ipsum totam reprehenderit possimus dolorem!"
+      "title": "Friends Reboot: Ratings, Dialogue, and Viewership (DSC 10)",
+      "year": "2025",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "DSC 10 final project using Friends episode, line, and emotion data to plan a reboot. Compared the top two directors' ratings with bootstrapped confidence intervals, tested for gender imbalance in the main cast's lines, ran permutation tests on viewership across seasons, built a random episode title generator, and fit a regression of IMDb ratings on viewership."
     },
     {
-      "title": "Aliquam porro quos fugit.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Fugiat omnis, illo tenetur ratione minima sapiente quia cupiditate provident asperiores voluptates numquam! Atque et dolorum est inventore, dolore expedita magnam reiciendis quam quos, harum architecto quis quae ea recusandae."
+      "title": "StoryAI: Student Writing Behavior Analysis",
+      "year": "2024",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Coded 60+ hours of session video from 30 students into a structured behavioral dataset and built Tableau dashboards showing how student time split across planning, translating, and revising. The analysis supported a demo to around 100 educators."
     },
     {
-      "title": "Praesentium doloremque vero perspiciatis?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Repellat minus provident placeat explicabo odit sequi nam accusantium doloribus, optio eos autem reprehenderit beatae ea alias odio aut, neque dignissimos veniam inventore iure! Delectus impedit numquam expedita suscipit cumque!"
+      "title": "StoryTrek: AI Writing Tutor",
+      "year": "2023",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Co-developed an AI-based writing tutoring platform for elementary and middle school students on a 4-person team at UC Irvine. Designed and ran user testing with 10 students and teachers across a 3-month build cycle."
     },
     {
-      "title": "Laborum at quae eum?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Rerum nemo minima nesciunt vitae quam saepe. Ea sed quas optio quos. Est cumque vero distinctio aliquid suscipit nostrum, quae commodi nam nesciunt, accusantium alias, asperiores quia pariatur similique officiis."
+      "title": "Placeholder Project",
+      "year": "2024",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Dolorum tenetur ab laboriosam assumenda, a unde, quisquam harum dolorem expedita ratione distinctio eaque sed cumque iste saepe, exercitationem dolores ipsum sint voluptates sequi quos voluptas labore."
     },
     {
-      "title": "Distinctio amet ipsa rerum.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Assumenda, a repellendus iste dolorum deserunt veritatis aliquam, amet sapiente velit atque quaerat sit voluptas alias ratione dolor quae consequuntur vel optio architecto error animi minus? Ipsum quia doloremque molestias?"
+      "title": "Placeholder Project",
+      "year": "2023",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Possimus, assumenda at minus vitae ducimus magni dolor! Nisi cum expedita alias ipsum fuga sint cumque doloribus ipsa eaque debitis. Quod perspiciatis dignissimos voluptatem nobis facilis in repudiandae."
     },
     {
-      "title": "Libero, non. Expedita, modi!",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Sunt fugiat, odio dolorem vitae ullam cumque nulla neque commodi voluptatum mollitia blanditiis ad reprehenderit temporibus pariatur dolore quaerat quasi nemo ut fuga sequi, sit alias voluptatem? Explicabo, repellat velit!"
+      "title": "Placeholder Project",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Alias nemo nesciunt facilis vero excepturi ea placeat rerum esse labore, accusamus exercitationem facere, dolores obcaecati harum tempore suscipit nulla. Corporis qui maiores nulla quidem."
     },
     {
-      "title": "Et doloribus non commodi.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Veritatis, expedita provident. Eligendi facilis odio numquam mollitia voluptas neque laborum qui, omnis consequuntur nostrum blanditiis nemo soluta asperiores laboriosam? Sint tenetur, dicta temporibus rem officiis facere fugiat debitis culpa."
+      "title": "Placeholder Project",
+      "year": "2025",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Fugiat omnis, illo tenetur ratione minima sapiente quia cupiditate provident asperiores voluptates numquam! Atque et dolorum est inventore, dolore expedita magnam reiciendis quam quos."
     },
     {
-      "title": "Perspiciatis accusantium reiciendis cumque?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Quaerat recusandae hic harum repudiandae. Doloribus culpa suscipit ipsam quidem sapiente assumenda ducimus, obcaecati in inventore, sit aspernatur commodi ipsa! Accusantium, delectus voluptates! Ex voluptatum deleniti ea. Doloribus, quos minus."
+      "title": "Placeholder Project",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Repellat minus provident placeat explicabo odit sequi nam accusantium doloribus, optio eos autem reprehenderit beatae ea alias odio aut, neque dignissimos veniam inventore iure."
     }
   ]
