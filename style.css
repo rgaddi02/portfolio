@@ -94,6 +94,13 @@ form button {
     img {
         width: 100%;
     }
+
+    .project-year {
+        font-family: Baskerville, serif;
+        font-variant-numeric: oldstyle-nums;
+        color: oklch(50% 3% 200);
+        margin: 0;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
