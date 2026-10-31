@@ -12,9 +12,28 @@ function updateTitle(count) {
   }
 }
 
-// These stay outside the function so they're created once and reused
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+let query = '';
+let selectedYear = null; 
+
+function searchFilter(list) {
+  let q = query.toLowerCase();
+  return list.filter((project) =>
+    Object.values(project).join('\n').toLowerCase().includes(q),
+  );
+}
+
+function yearFilter(list) {
+  if (selectedYear === null) return list;
+  return list.filter((project) => project.year === selectedYear);
+}
+
+function selectYear(label) {
+  selectedYear = selectedYear === label ? null : label;
+  update();
+}
 
 function renderPieChart(projectsGiven) {
   let newRolledData = d3.rollups(
@@ -38,37 +57,44 @@ function renderPieChart(projectsGiven) {
   legend.selectAll('li').remove();
 
   newArcs.forEach((arc, idx) => {
+    let label = newData[idx].label;
     newSVG.append('path')
       .attr('d', arc)
-      .attr('fill', colors(newData[idx].label));
+      .attr('fill', colors(label))
+      .classed('selected', label === selectedYear)
+      .on('click', () => selectYear(label));
   });
 
   newData.forEach((d) => {
     legend.append('li')
       .attr('style', `--color:${colors(d.label)}`)
       .attr('class', 'legend-item')
-      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+      .classed('selected', d.label === selectedYear)
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
+      .on('click', () => selectYear(d.label));
   });
 }
 
-let query = '';
+// One place that applies BOTH filters and re-renders everything
+function update() {
+  let searched = searchFilter(projects);
 
-function setQuery(newQuery) {
-  query = newQuery;
-  return projects.filter((project) => {
-    let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
-  });
+  // If the search removed the selected year entirely, clear the selection
+  if (selectedYear !== null && !searched.some((p) => p.year === selectedYear)) {
+    selectedYear = null;
+  }
+
+  let visible = yearFilter(searched);
+
+  renderPieChart(searched);
+  renderProjects(visible, projectsContainer, 'h2');
+  updateTitle(visible.length);
 }
 
-renderProjects(projects, projectsContainer, 'h2');
-renderPieChart(projects);
-updateTitle(projects.length);
+update();
 
 let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('input', (event) => {
-  let filteredProjects = setQuery(event.target.value);
-  renderProjects(filteredProjects, projectsContainer, 'h2');
-  renderPieChart(filteredProjects);
-  updateTitle(filteredProjects.length);
+  query = event.target.value;
+  update();
 });

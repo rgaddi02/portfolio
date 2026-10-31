@@ -88,6 +88,32 @@ form button {
     flex: 0 1 20em;
     min-width: 0;
     overflow: visible;
+
+    &:has(path:hover) {
+        path:not(:hover) {
+            opacity: 0.5;
+        }
+    }
+
+    path {
+        transition: 300ms;
+        cursor: pointer;
+    }
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+}
+
+.selected {
+    --color: oklch(35% 0.15 300) !important;
+
+    &:is(path) {
+        fill: var(--color);
+    }
 }
 
 .legend {
@@ -100,12 +126,6 @@ form button {
     padding: 1em;
     border: 1px solid var(--border-color);
     border-radius: 0.5em;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
 }
 
 .legend-item em {
