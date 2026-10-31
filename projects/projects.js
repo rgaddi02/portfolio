@@ -8,7 +8,7 @@ const projectsTitle = document.querySelector('.projects-title');
 
 function updateTitle(count) {
   if (projectsTitle) {
-    projectsTitle.textContent = `${count} Projects`;
+    projectsTitle.textContent = `${count} Project${count === 1 ? '' : 's'}`;
   }
 }
 
