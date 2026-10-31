@@ -120,6 +120,14 @@ form button {
     border-radius: 50%;
 }
 
+.searchBar {
+    width: 100%;
+    padding: 0.5em 0.75em;
+    margin-block-end: 1.5em;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5em;
+}
+
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
