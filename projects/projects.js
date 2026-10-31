@@ -75,11 +75,9 @@ function renderPieChart(projectsGiven) {
   });
 }
 
-// One place that applies BOTH filters and re-renders everything
 function update() {
   let searched = searchFilter(projects);
 
-  // If the search removed the selected year entirely, clear the selection
   if (selectedYear !== null && !searched.some((p) => p.year === selectedYear)) {
     selectedYear = null;
   }
