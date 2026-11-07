@@ -8,6 +8,28 @@ img {
     height: auto;
 }
 
+.stats {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto;
+    grid-auto-columns: 1fr;
+    gap: 0.25em 1em;
+    margin: 0;
+    text-align: center;
+
+    dt {
+        font-size: 80%;
+        text-transform: uppercase;
+        color: oklch(50% 3% 200);
+    }
+
+    dd {
+        margin: 0;
+        font-size: 150%;
+        font-weight: bold;
+    }
+}
+
 .hero {
     width: 100%;
     max-width: 30em;
