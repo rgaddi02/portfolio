@@ -17,6 +17,7 @@ if (currentLink) {
 let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
+    { url: 'meta/', title: 'Meta' },
     { url: 'contact/', title: 'Contact'},
     { url: 'resume/', title: 'Resume'},
     { url: 'https://github.com/rgaddi02', title: 'GitHub'}
@@ -145,3 +146,4 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 export async function fetchGitHubData(username) {
   return fetchJSON(`https://api.github.com/users/${username}`);
 }
+
