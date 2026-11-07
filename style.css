@@ -38,6 +38,16 @@ img {
     border-radius: 0.5em;
 }
 
+.gridlines {
+    .tick line {
+        stroke-opacity: 0.35;
+    }
+
+    .domain {
+        display: none;
+    }
+}
+
 nav {
     display: flex;
     margin-top: 2.5rem;
