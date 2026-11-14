@@ -1,5 +1,12 @@
 [
     {
+      "title": "Bikewatching: Boston Bluebikes Traffic",
+      "year": "2026",
+      "image": "images/bikewatching.png",
+      "url": "https://rgaddi02.github.io/bikewatching/",
+      "description": "Interactive map of Bluebikes traffic across Boston and Cambridge built with Mapbox GL JS and D3. Station circles are sized by trip volume and colored by arrival/departure balance, with a time-of-day slider that recomputes traffic from 260,000+ March 2024 trips using minute-level bucketing for smooth filtering."
+    },
+    {
       "title": "Floor Generals: NBA Passing Network Analysis",
       "year": "2026",
       "image": "https://dsc106.com/labs/lab02/images/empty.svg",
@@ -66,11 +73,5 @@
       "year": "2023",
       "image": "https://dsc106.com/labs/lab02/images/empty.svg",
       "description": "Possimus, assumenda at minus vitae ducimus magni dolor! Nisi cum expedita alias ipsum fuga sint cumque doloribus ipsa eaque debitis. Quod perspiciatis dignissimos voluptatem nobis facilis in repudiandae."
-    },
-    {
-      "title": "Placeholder Project",
-      "year": "2026",
-      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-      "description": "Repellat minus provident placeat explicabo odit sequi nam accusantium doloribus, optio eos autem reprehenderit beatae ea alias odio aut, neque dignissimos veniam inventore iure."
     }
   ]
