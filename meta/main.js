@@ -188,6 +188,13 @@ function renderScatterPlot(data, commits) {
       updateTooltipVisibility(false);
     });
 
+
+  // Axes
+  const xAxis = d3.axisBottom(xScale);
+  const yAxis = d3
+    .axisLeft(yScale)
+    .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
+  
   svg.append('g')
     .attr('transform', `translate(0, ${usableArea.bottom})`)
     .attr('class', 'x-axis')
@@ -196,22 +203,6 @@ function renderScatterPlot(data, commits) {
   svg.append('g')
     .attr('transform', `translate(${usableArea.left}, 0)`)
     .attr('class', 'y-axis')
-    .call(yAxis);
-
-  // Axes
-  const xAxis = d3.axisBottom(xScale);
-  const yAxis = d3
-    .axisLeft(yScale)
-    .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
-
-  svg
-    .append('g')
-    .attr('transform', `translate(0, ${usableArea.bottom})`)
-    .call(xAxis);
-
-  svg
-    .append('g')
-    .attr('transform', `translate(${usableArea.left}, 0)`)
     .call(yAxis);
 
   createBrushSelector(svg);
