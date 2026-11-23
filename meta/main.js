@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let xScale;
 let yScale;
@@ -41,7 +42,8 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    })
+    .sort((a, b) => a.datetime - b.datetime);
 }
 
 function renderCommitInfo(data, commits) {
@@ -196,7 +198,7 @@ function renderScatterPlot(data, commits) {
   const yAxis = d3
     .axisLeft(yScale)
     .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
-  
+
   svg.append('g')
     .attr('transform', `translate(0, ${usableArea.bottom})`)
     .attr('class', 'x-axis')
@@ -369,9 +371,10 @@ let filteredCommits = commits;
 const slider = document.getElementById('commit-progress');
 const timeElement = document.getElementById('commit-time');
 
-function onTimeSliderChange() {
-  commitProgress = Number(slider.value);
-  commitMaxTime = timeScale.invert(commitProgress);
+function updateTimeFilter(maxTime) {
+  commitMaxTime = maxTime;
+  commitProgress = timeScale(commitMaxTime);
+  slider.value = commitProgress; // keep the slider in sync when scrolling
 
   timeElement.textContent = commitMaxTime.toLocaleString('en', {
     dateStyle: 'long',
@@ -387,7 +390,39 @@ function onTimeSliderChange() {
   updateFileDisplay(filteredCommits);
 }
 
+function onTimeSliderChange() {
+  updateTimeFilter(timeScale.invert(Number(slider.value)));
+}
+
 slider.addEventListener('input', onTimeSliderChange);
 
 renderScatterPlot(data, commits);
 onTimeSliderChange();
+
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html((d, i) => `
+      On ${d.datetime.toLocaleString('en', { dateStyle: 'full', timeStyle: 'short' })},
+      I made <a href="${d.url}" target="_blank">${i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+    }</a>.
+      I edited ${d.totalLines} lines across ${d3.rollups(d.lines, (D) => D.length, (d) => d.file).length
+    } files.
+      Then I looked over all I had made, and I saw that it was very good.
+  `);
+
+function onStepEnter(response) {
+  updateTimeFilter(response.element.__data__.datetime);
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
+
+window.addEventListener('resize', () => scroller.resize());
