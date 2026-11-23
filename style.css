@@ -86,12 +86,37 @@ dl.info[hidden]:not(:hover, :focus-within) {
 }
 
 #chart circle {
-    transition: 200ms;
+    transition: all 200ms, r calc(var(--r) * 100ms);
     transform-origin: center;
     transform-box: fill-box;
 
+    @starting-style {
+        r: 0;
+    }
+
     &:hover {
         transform: scale(1.5);
+    }
+}
+
+.time-filter {
+    display: flex;
+    margin-block: 1em;
+
+    label {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.5em 1em;
+    }
+
+    input { flex: 1; }
+
+    time {
+        margin-left: auto;
+        flex-basis: 100%;
+        text-align: right;
     }
 }
 
