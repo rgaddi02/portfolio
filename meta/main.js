@@ -248,6 +248,42 @@ function updateScatterPlot(data, commits) {
     });
 }
 
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+function updateFileDisplay(filteredCommits) {
+  let lines = filteredCommits.flatMap((d) => d.lines);
+  let files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => {
+      return { name, lines };
+    })
+    .sort((a, b) => b.lines.length - a.lines.length);
+
+  let filesContainer = d3
+    .select('#files')
+    .selectAll('div')
+    .data(files, (d) => d.name)
+    .join(
+      (enter) =>
+        enter.append('div').call((div) => {
+          div.append('dt');
+          div.append('dd');
+        }),
+    );
+
+  filesContainer
+    .select('dt')
+    .html((d) => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc')
+    .attr('style', (d) => `--color: ${colors(d.type)}`);
+}
+
 function createBrushSelector(svg) {
   svg.call(d3.brush().on('start brush end', brushed));
 
@@ -348,6 +384,7 @@ function onTimeSliderChange() {
 
   updateScatterPlot(data, filteredCommits);
   renderCommitInfo(filteredData, filteredCommits);
+  updateFileDisplay(filteredCommits);
 }
 
 slider.addEventListener('input', onTimeSliderChange);
