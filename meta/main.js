@@ -359,70 +359,57 @@ function renderLanguageBreakdown(selection) {
 
 let data = await loadData();
 let commits = processCommits(data);
+let filteredCommits = commits; 
 
-let commitProgress = 100;
-let timeScale = d3
-  .scaleTime()
-  .domain([d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)])
-  .range([0, 100]);
-let commitMaxTime = timeScale.invert(commitProgress);
-let filteredCommits = commits;
+function commitsUntil(maxTime) {
+  return commits.filter((d) => d.datetime <= maxTime);
+}
 
-const slider = document.getElementById('commit-progress');
-const timeElement = document.getElementById('commit-time');
-
-function updateTimeFilter(maxTime) {
-  commitMaxTime = maxTime;
-  commitProgress = timeScale(commitMaxTime);
-  slider.value = commitProgress; // keep the slider in sync when scrolling
-
-  timeElement.textContent = commitMaxTime.toLocaleString('en', {
-    dateStyle: 'long',
-    timeStyle: 'short',
-  });
-  timeElement.dateTime = commitMaxTime.toISOString();
-
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-  const filteredData = filteredCommits.flatMap((d) => d.lines);
-
+function updateScatterStory(maxTime) {
+  filteredCommits = commitsUntil(maxTime);
   updateScatterPlot(data, filteredCommits);
-  renderCommitInfo(filteredData, filteredCommits);
-  updateFileDisplay(filteredCommits);
+  renderCommitInfo(filteredCommits.flatMap((d) => d.lines), filteredCommits);
 }
 
-function onTimeSliderChange() {
-  updateTimeFilter(timeScale.invert(Number(slider.value)));
+function updateFilesStory(maxTime) {
+  updateFileDisplay(commitsUntil(maxTime));
 }
-
-slider.addEventListener('input', onTimeSliderChange);
 
 renderScatterPlot(data, commits);
-onTimeSliderChange();
+renderCommitInfo(data, commits);
+updateFileDisplay(commits);
 
-d3.select('#scatter-story')
-  .selectAll('.step')
-  .data(commits)
-  .join('div')
-  .attr('class', 'step')
-  .html((d, i) => `
+function renderStory(selector) {
+  d3.select(selector)
+    .selectAll('.step')
+    .data(commits)
+    .join('div')
+    .attr('class', 'step')
+    .html((d, i) => `
       On ${d.datetime.toLocaleString('en', { dateStyle: 'full', timeStyle: 'short' })},
-      I made <a href="${d.url}" target="_blank">${i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
-    }</a>.
-      I edited ${d.totalLines} lines across ${d3.rollups(d.lines, (D) => D.length, (d) => d.file).length
-    } files.
+      I made <a href="${d.url}" target="_blank">${
+        i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+      }</a>.
+      I edited ${d.totalLines} lines across ${
+        d3.rollups(d.lines, (D) => D.length, (d) => d.file).length
+      } files.
       Then I looked over all I had made, and I saw that it was very good.
-  `);
-
-function onStepEnter(response) {
-  updateTimeFilter(response.element.__data__.datetime);
+    `);
 }
 
-const scroller = scrollama();
-scroller
-  .setup({
-    container: '#scrolly-1',
-    step: '#scrolly-1 .step',
-  })
-  .onStepEnter(onStepEnter);
+renderStory('#scatter-story');
+renderStory('#files-story');
 
-window.addEventListener('resize', () => scroller.resize());
+function setupScroller(container, onEnter) {
+  const scroller = scrollama();
+  scroller
+    .setup({
+      container,
+      step: `${container} .step`,
+    })
+    .onStepEnter((response) => onEnter(response.element.__data__.datetime));
+  window.addEventListener('resize', () => scroller.resize());
+}
+
+setupScroller('#scrolly-1', updateScatterStory);
+setupScroller('#scrolly-2', updateFilesStory);

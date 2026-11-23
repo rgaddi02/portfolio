@@ -12,13 +12,6 @@
 
 <body>
     <h1>Meta</h1>
-    <div class="time-filter">
-        <label>
-            Show commits until:
-            <input type="range" id="commit-progress" min="0" max="100" value="100">
-            <time id="commit-time"></time>
-        </label>
-    </div>
     <p>Stats about the code behind this website, computed from its git history.</p>
     <div id="stats"></div>
 
@@ -33,8 +26,13 @@
         </div>
     </div>
 
-
-    <dl id="files"></dl>
+    <h2>The race for the biggest file</h2>
+    <div id="scrolly-2">
+        <div id="files-story"></div>
+        <div id="files-viz">
+            <dl id="files"></dl>
+        </div>
+    </div>
 
     <dl id="commit-tooltip" class="info tooltip" hidden>
         <dt>Commit</dt>
