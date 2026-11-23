@@ -440,10 +440,12 @@ h1 {
     position: relative;
     display: flex;
     gap: 1rem;
+}
 
-    > * {
-        flex: 1;
-    }
+#scrolly-1 > *,
+#scrolly-2 > * {
+    flex: 1;
+    min-width: 0;
 }
 
 #scatter-story,
